@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 18px; /* Bigger text for elderly users */
+    line-height: 1.6;
+    margin: 30px;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+h1, h2 {
+    color: #00529B;
+}
+
+textarea {
+    width: 100%;
+    font-size: 16px;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    background-color: #00529B;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #003f7f;
+}
