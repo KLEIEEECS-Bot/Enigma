@@ -2,7 +2,7 @@ import requests
 
 # Replace with your Gemini API details
 GEMINI_API_URL = "https://api.gemini-model.com/v1/analyze"
-API_KEY = "AIzaSyC68e3yceFdgQ_xDUHxHs2PmQ4ItM0pfkc"
+API_KEY = ""
 
 def call_gemini_api(description):
     """
