@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberattack Storyteller</title>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 20px; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        textarea { width: 100%; height: 150px; padding: 10px; font-size: 16px; }
+        button { padding: 15px 30px; font-size: 18px; background: #3498db; color: white; border: none; cursor: pointer; }
+        .example { background: #f0f0f0; padding: 15px; margin: 10px 0; cursor: pointer; }
+        #results { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ Cyberattack Storyteller</h1>
+        <p>Understanding cyber threats in simple terms</p>
+        
+        <h2>📝 Tell us what happened</h2>
+        <textarea id="description" placeholder="Paste the incident description here..."></textarea>
+        <br><br>
+        <button onclick="analyzeAttack()">🔍 Analyze Attack</button>
+        
+        <h3>📋 Try these examples:</h3>
+        <div class="example" onclick="fillExample('User received email from bank@security-alert.com asking to verify account by clicking link and entering login credentials.')">
+            <h4>Phishing Email</h4>
+            <p>Click to try this example</p>
+        </div>
+        
+        <div class="example" onclick="fillExample('User received call from someone claiming to be Microsoft tech support, asking for remote computer access to fix urgent security issues.')">
+            <h4>Phone Scam</h4>
+            <p>Click to try this example</p>
+        </div>
+        
+        <div id="results"></div>
+    </div>
+
+    <script>
+        function fillExample(text) {
+            document.getElementById('description').value = text;
+        }
+
+        async function analyzeAttack() {
+            const description = document.getElementById('description').value.trim();
+            if (!description) {
+                alert('Please enter a description');
+                return;
+            }
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ description })
+                });
+
+                const results = await response.json();
+                
+                document.getElementById('results').innerHTML = `
+                    <div style="background: #e74c3c; color: white; padding: 20px; margin: 20px 0;">
+                        <h2>🎯 Attack Type: ${results.attack_type}</h2>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-left: 4px solid #2ecc71;">
+                        <h3>📖 What This Means:</h3>
+                        <p style="font-size: 18px;">${results.story}</p>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 20px; border-left: 4px solid #e74c3c;">
+                        <h3>✅ What To Do:</h3>
+                        ${results.actions.map((action, i) => `<p>${i+1}. ${action}</p>`).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                alert('Error analyzing attack');
+            }
+        }
+    </script>
+</body>
+</html>

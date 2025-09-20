@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="result-section">
+    <div class="back-button">
+        <a href="/" class="btn-secondary">← Back to Analyzer</a>
+    </div>
+    
+    <div id="results" class="results-container">
+        <!-- Results will be populated by JavaScript -->
+    </div>
+    
+    <div class="audio-controls">
+        <button id="speakStory" class="audio-btn">🔊 Read Story Aloud</button>
+        <button id="speakActions" class="audio-btn">🔊 Read Actions Aloud</button>
+    </div>
+    
+    <div class="export-options">
+        <button id="printResults" class="btn-secondary">🖨️ Print This Page</button>
+    </div>
+</div>
+
+<!-- Result Template (hidden, used by JavaScript) -->
+<template id="resultTemplate">
+    <div class="attack-type">
+        <h2>🎯 Type of Attack: <span class="attack-name"></span></h2>
+    </div>
+    
+    <div class="visual-section">
+        <h3>📊 What Happened (Visual Guide)</h3>
+        <div class="attack-visual">
+            <!-- SVG will be inserted here -->
+        </div>
+    </div>
+    
+    <div class="story-section">
+        <h3>📖 What This Means (In Simple Terms)</h3>
+        <div class="story-content">
+            <p class="story-text"></p>
+        </div>
+    </div>
+    
+    <div class="actions-section">
+        <h3>✅ What To Do Now</h3>
+        <div class="actions-checklist">
+            <!-- Actions will be populated here -->
+        </div>
+    </div>
+    
+    <div class="timestamp">
+        <small>Analysis completed: <span class="time"></span></small>
+    </div>
+</template>
+{% endblock %}
